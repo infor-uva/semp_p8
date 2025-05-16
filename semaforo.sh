@@ -86,10 +86,10 @@ action () {
 	# After a half second (pedestrians start walking)
 	range $mot 50 & sleep 3.8
 	# d. After four seconds (the tls -car's yellow and pedestrian's green- start to blink)
-	off $ctr & { [ $yellow_blink = 0 ] && on $cta } & range $mot 100 & sleep .1
+	off $ctr & { [ $yellow_blink = 0 ] && on $cta; } & range $mot 100 & sleep .1
 	for _ in $(seq 3); do
-		{ [ $yellow_blink = 0 ] && off $cta } & off $ptv & sleep .5
-		{ [ $yellow_blink = 0 ] && on $cta } & on $ptv & sleep .5
+		{ [ $yellow_blink = 0 ] && off $cta; } & off $ptv & sleep .5
+		{ [ $yellow_blink = 0 ] && on $cta; } & on $ptv & sleep .5
 	done
 	# After 7 seconds (pedestrian tl change from green to red)
 	# Pedestrians stop running
@@ -125,7 +125,7 @@ rainbow() {
   f2=.5
   while true; do
     for i in $outputs; do
-      { on $i && sleep $f && off $i } &
+      { on $i && sleep $f && off $i; } &
       sleep $f2
     done
   done
