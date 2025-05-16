@@ -43,11 +43,15 @@ range () {
 	 gpio pwm $1 $2
 }
 
+mode () {
+  gpio mode $2 $1
+}
+
 all() {
   command="$1"
   shift
 	for i in $outputs;do
-    $@
+    [ -n "$@" ] && $@ $1
 		$command $i &
 	done
 }
@@ -59,14 +63,14 @@ all() {
 setup() {
 	echo Configure and testing interfaces...
 	# Configure outputs
-  all on gpio mode $i out
+  all on mode out
 	# Configure motor
-	gpio mode $mot pwm
+  mode pwm $mot
 	range $mot 50 
 	gpio pwm-ms
 	gpio pwmr 100
 	# Configure button
-	gpio mode $but in
+  mode in $but
 	# Delay and stop all
 	sleep .7
 	range $mot 0 & all off
