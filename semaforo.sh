@@ -51,7 +51,7 @@ all() {
   command="$1"
   shift
 	for i in $outputs;do
-    [ -n "$@" ] && $@ $1
+    [ -n "$(echo $@)" ] && $@ $i
 		$command $i &
 	done
 }
