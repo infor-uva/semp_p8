@@ -234,7 +234,7 @@ while true; do
     sleep .1
     end=$(date +%s)
     time=$(($end - $start))
-    if [ $mode = 0 ] && [ $time -ge 4 ]; then
+    if [ $mode = 0 ] && [ $time -ge 2 ]; then
       echo ALTER CUSTOM BLINK
       mode=1
     elif [ $mode = 1 ] && [ $time -ge 4 ]; then
